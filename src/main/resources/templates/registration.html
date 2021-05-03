@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<div>
+    <form method="post" action="./registration">
+        <label>
+            <input type="text" name="login" placeholder="user name...">
+        </label>
+        <label>
+            <input type="text" name="password" placeholder="password...">
+        </label>
+        <label>
+            <input type="text" name="repass" placeholder="repeat password...">
+        </label>
+        <button type="submit">register</button>
+    </form>
+    <h1 th:text="${status}"></h1>
+</div>
+</body>
+</html>
