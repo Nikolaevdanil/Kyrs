@@ -1,6 +1,6 @@
 package com.example.demo.security;
 
-import com.example.demo.service.userService;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private userService userService;
+    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws
@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/logout", "/registration")
                 .permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().defaultSuccessUrl("/people ")
+                .and().formLogin().defaultSuccessUrl("/people/new")
                 .and().logout().
                 invalidateHttpSession(true)
                 .clearAuthentication(true)

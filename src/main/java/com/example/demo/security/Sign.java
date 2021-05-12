@@ -2,14 +2,21 @@ package com.example.demo.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
+
 
 @Getter
 @AllArgsConstructor
-public class SignUpRequest {
+public class Sign {
+
     private String login;
     private String password;
     private String repass;
-
+    private String name;
+    private String surname;
     public String getLogin() {
         return login;
     }
@@ -32,5 +39,21 @@ public class SignUpRequest {
 
     public void setRepass(String repass) {
         this.repass = repass;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Прачечная</title>
+</head>
+<body>
+<h2>Прачечная</h2>
+<h1>Добро пожаловать</h1>
+<h3>Как пользоваться прачечной?</h3>
+<h4>Хочешь постираться, но не знаешь с чего тебе начать?
+    Не парься! Все очень легко и просто. Загружаешь белье,
+    вводишь команды через сенсорную панель терминала,
+    а дальше за тебя все делает умная техника. Остается
+    только подождать</h4>
+<h3>Как участвовать в акциях?</h3>
+<h4>Интересуют скидки или бонусная программа?
+    Лови халяву, студент! Прочитай правила,
+    выполни условия и получи возможность
+    постираться и посушиться бесплатно или
+    с умопомрачительной скидкой!
+    Выбери акцию и кликни на «участвовать»</h4>
+<h4>Список всех зарегистрированных пользователей</h4>
+<div th:each="user : ${user}">
+    <a th:text="${user.getId()}">user</a>
+    -
+    <a th:text="${user.getName()}">user</a>
+    <a th:text="${user.getSurname()}">user</a>
+    -
+    <a th:text="${user.getLogin()}">user</a>
+    -
+    <a th:text="${user.getPassword()}">user</a>
+    <form th:method="POST" th:action="@{/people/help/id1/{id}(id=${user.getId()})}">
+        <input type="submit" value="Remuve"/>
+    </form>
+</div>
+
+<form method="post" action="/people/help/getUserId">
+    <input type="submit" value="sort workers by id">
+</form>
+<form method="post" action="/people/help/getUserName">
+    <input type="submit" value="sort workers by firsName">
+</form>
+<form method="post" action="/people/help/getUserSurname">
+    <input type="submit" value="sort workers by lastName">
+</form>
+
+<h3><a href="/people">Меню</a></h3>
+
+
+</body>
+</html>

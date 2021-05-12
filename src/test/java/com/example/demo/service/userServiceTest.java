@@ -38,7 +38,7 @@ public class userServiceTest {
         user.setLogin("Vasya");
         user.setId(longInt);
         user.setPassword("vasya2!");
-        userService us = new userService(userRepozitory);
+        UserService us = new UserService(userRepozitory);
         Mockito.when(userRepozitory.findByLogin("Vasya")).thenReturn(user);
         Assertions.assertEquals("Vasya", us.loadUserByUsername("Vasya").getUsername());
     }

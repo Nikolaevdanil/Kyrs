@@ -1,7 +1,7 @@
 package com.example.demo.security;
 
 import com.example.demo.models.User;
-import com.example.demo.service.userService;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,13 +16,13 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/registration")
-public class userController {
+public class UserController {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private userService userService;
+    private UserService userService;
 
     @Autowired
-    public userController(userService userService, BCryptPasswordEncoder bCryptPasswordEncoder){
+    public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder){
         this.userService = userService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
@@ -32,12 +32,14 @@ public class userController {
         return "registration";
     }
     @PostMapping
-    public String registration(@Valid SignUpRequest signUpRequest, BindingResult result, Model model){
+    public String registration(@Valid Sign signUpRequest, BindingResult result, Model model){
         if (result.hasErrors()) return "registration";
         if (signUpRequest.getPassword().equals(signUpRequest.getRepass())){
             User user=new User();
             user.setLogin(signUpRequest.getLogin());
             user.setPassword(bCryptPasswordEncoder.encode(signUpRequest.getPassword()));
+            user.setName(signUpRequest.getName());
+            user.setSurname(signUpRequest.getSurname());
             try {
                 userService.addUser(user);
                 return "redirect:/login";
